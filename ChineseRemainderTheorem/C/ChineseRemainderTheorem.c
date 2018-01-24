@@ -3,8 +3,7 @@ Name - Nikhil Ranjan Nayak
 Regd no - 1641012040
 Desc - Chinese Remainder Theorem
 */
-#
-include "stdio.h"
+#include "stdio.h"
 int gcd(int, int);
 int check(int[], int);
 int evaluate(int[], int[], int);
