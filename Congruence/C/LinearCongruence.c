@@ -27,8 +27,6 @@ void main()
 		}
 		printf("\n");
 	}
-	else
-		printf("\nNo solutions exist\n");
 }
 
 int gcd(int a, int b)
