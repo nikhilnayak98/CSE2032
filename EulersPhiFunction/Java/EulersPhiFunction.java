@@ -16,16 +16,16 @@ public class EulersPhiFunction {
 		temp = n;
 		
 		for(i = 2; i <= Math.sqrt(n); i++) {
-        	if(n % i == 0) { 
-       			while(n % i == 0) {
-            	    n /= i;
+			if(n % i == 0) {
+				while(n % i == 0) {
+					n /= i;
 				}
-            	res -= (res / i);
-        	}
-    	}
+				res -= (res / i);
+			}
+		}
 
     	if(n > 1)
-        	res -= (res / n);
+		res -= (res / n);
         
     	System.out.println("\nPhi of " + temp + " - " + res);
     	}
