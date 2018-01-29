@@ -8,36 +8,33 @@ import java.util.Scanner;
 public class ChineseRemainderTheorem {
 
 	public static void main(String[] args)  {
-    Scanner sc = new Scanner(System.in);
-    int y, b, c, m, n, x;
-    System.out.println("\nx ≅ b(mod m)");
+    	Scanner sc = new Scanner(System.in);
+    	int y, b, c, m, n, x;
+    	System.out.println("\nx ≅ b(mod m)");
     
-    System.out.println("\nEnter b - ");
-    b = sc.nextInt();
+	    System.out.println("\nEnter b - ");
+    	b = sc.nextInt();
     
-    System.out.println("\nEnter m - ");
-    m = sc.nextInt();
+	    System.out.println("\nEnter m - ");
+    	m = sc.nextInt();
     
-    System.out.println("\nx ≅ c(mod n)");
+    	System.out.println("\nx ≅ c(mod n)");
     
-    System.out.println("\nEnter c - ");
-    c = sc.nextInt();
+    	System.out.println("\nEnter c - ");
+    	c = sc.nextInt();
     
-    System.out.println("\nEnter n - ");
-    n = sc.nextInt();
+    	System.out.println("\nEnter n - ");
+    	n = sc.nextInt();
     
-    if(gcd(m, n) == 1)
-    {
-    	for(y = 0; y < n; y++)
-    	{
-    		if((m * y) % n == (c - b))
-            {
-                x = (m * y) + b;
-    			System.out.println("\nx = " + x);
-                break;
-            }
+    	if(gcd(m, n) == 1) {
+    		for(y = 0; y < n; y++) {
+    			if((m * y) % n == (c - b)) {
+                	x = (m * y) + b;
+    				System.out.println("\nx = " + x);
+                	break;
+            	}
+    		}
     	}
-    }
 }
 
 	public static int gcd(int a, int b) {
