@@ -7,7 +7,7 @@ Desc - Chinese Remainder Theorem
 int gcd(int, int);
 void main() 
 {
-    int y, b, c, m, n;
+    int y, b, c, m, n, x;
 
     printf("\nx ≅ b(mod m)");
     
@@ -30,7 +30,11 @@ void main()
     	for(y = 0; y < n; y++)
     	{
     		if((m * y) % n == (c - b))
-    			printf("\nx ≅ %d(mod %d)\n", y, n);
+            {
+                x = (m * y) + b;
+    			printf("\nx = %d\n", x);
+                break;
+            }
     	}
     }
 }
