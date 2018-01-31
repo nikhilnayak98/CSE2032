@@ -16,18 +16,18 @@ void main()
 
 int phi(int n)
 {
-	int i;
+	int pi;
 	double res = n;
 	
-	for(i = 2; i <= sqrt(n); i++)
+	for(pi = 2; pi <= sqrt(n); pi++)
 	{
-		if(n % i == 0)
+		if(n % pi == 0)
 		{
-			while(n % i == 0)
+			while(n % pi == 0)
 			{
-				n /= i;
+				n /= pi;
 			}
-			res = res * (1.0 - 1.0 / (double)i);
+			res = res * (1.0 - 1.0 / (double)pi);
 		}
 	}
 
