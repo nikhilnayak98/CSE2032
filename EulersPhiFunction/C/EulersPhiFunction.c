@@ -27,12 +27,12 @@ int phi(int n)
 			{
 				n /= i;
 			}
-			res *= (1.0 - 1.0 / (double)i);
+			res = res * (1.0 - 1.0 / (double)i);
 		}
 	}
 
 	if(n > 1)
-		res *= (1.0 - 1.0 / n);
+		res = res * (1.0 - 1.0 / n);
 	
 	return (int)res;
 }
