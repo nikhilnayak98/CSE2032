@@ -9,24 +9,29 @@ public class EulersPhiFunction {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n, res, i, temp;
+		int n;
 		System.out.println("\nEnter n - ");
 		n = sc.nextInt();
-		res = n;
-		temp = n;
-		
+        
+    	System.out.println("\nPhi of " + n + " - " + phi(n));
+    	}
+    	
+    public static int phi(int n) {
+		int i;
+		double res = n;
+	
 		for(i = 2; i <= Math.sqrt(n); i++) {
 			if(n % i == 0) {
 				while(n % i == 0) {
-					n /= i;
+				n /= i;
 				}
-				res -= (res / i);
+				res *= (1.0 - 1.0 / (double)i);
 			}
 		}
 
-    	if(n > 1)
-		res -= (res / n);
-        
-    	System.out.println("\nPhi of " + temp + " - " + res);
-    	}
+		if(n > 1)
+			res *= (1.0 - 1.0 / n);
+	
+		return (int)res;
+	}
 }
