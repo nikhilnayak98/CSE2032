@@ -5,13 +5,19 @@ Desc - Euler's Phi Function
 */
 #include "stdio.h"
 #include "math.h"
+int phi(int);
 void main()
 {
-	int n, res, i, temp;
-	printf("\nEnter n - ");
+	int n;
+	printf("\nEnter a number - ");
 	scanf("%d", &n);
-	res = n;
-	temp = n;
+	printf("phi of %d = %d\n", n, phi(n));
+}
+
+int phi(int n)
+{
+	int i;
+	double res = n;
 	
 	for(i = 2; i <= sqrt(n); i++)
 	{
@@ -21,12 +27,12 @@ void main()
 			{
 				n /= i;
 			}
-			res -= (res / i);
+			res *= (1.0 - 1.0 / (double)i);
 		}
 	}
-	
+
 	if(n > 1)
-		res -= (res / n);
-		
-	printf("\nPhi of %d - %d\n", temp, res);
+		res *= (1.0 - 1.0 / n);
+	
+	return (int)res;
 }
