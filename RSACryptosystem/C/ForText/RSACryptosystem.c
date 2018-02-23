@@ -3,7 +3,7 @@ Name - Nikhil Ranjan Nayak
 Regd no - 1641012040
 Desc - RSA Cryptosystem for text.
 */
-#include <iostream>
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
@@ -11,18 +11,17 @@ long int gcd(long int, long int);
 long int isprime(long int);
 long int encrypt(char, long int, long int);
 char decrypt(long int, long int, long int);
-
-using namespace std;
-
-int main()
+void main()
 {
     long int i, len;
     long int p, q, n, phi, e, d, cipher[50];
     char text[50];
 
-    cout << "Enter the text to be encrypted: ";
-    cin.getline(text, sizeof(text));
+    printf("Enter the text to be encrypted: ");
+    fgets(text, 20, stdin);
+    
     len = strlen(text);
+    
     do
     {
     	p = rand() % 30;
@@ -46,30 +45,26 @@ int main()
         d = rand() % phi;
     }while(((d * e) % phi) != 1);
     
-    cout << "Two prime numbers (p and q) are: " << p << " and " << q << endl;
-    cout << "n(p * q) = " << p << " * " << q << " = " << p*q << endl;
-    cout << "(p - 1) * (q - 1) = "<< phi << endl;
-    cout << "Public key (n,  e): (" << n << ", " << e << ")\n";
-    cout << "Private key (n, d): (" << n << ", " << d << ")\n";
+    printf("\nTwo prime numbers (p and q) are: %ld and %ld", p, q);
+    printf("\nn(p * q) = p * p = %ld", (p * q));
+    printf("\n(p - 1) * (q - 1) = %ld", phi);
+    printf("\nPublic key (n,  e): (%ld, %ld)", n , e);
+    printf("\nPrivate key (n, d): (%ld, %ld)", n , d);
     
     for (i = 0; i < len; i++)
         cipher[i] = encrypt(text[i], n, e);
-    cout << "Encrypted message: ";
+    printf("\nEncrypted message: \n");
     
     for (i = 0; i < len; i++)
-        cout << cipher[i];
+        printf("%ld", cipher[i]);
     
     for (i = 0; i < len; i++)
         text[i] = decrypt(cipher[i], n, d);
-    
-    cout << endl;
-    cout << "Decrypted message: ";
+   
+    printf("\nDecrypted message: ");
     
     for (i = 0; i < len; i++)
-        cout << text[i];
-    
-    cout << endl;
-    return 0;
+        printf("%c", text[i]);
 }
 
 long int gcd(long int a, long int b)
