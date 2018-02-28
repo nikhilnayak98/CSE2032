@@ -5,66 +5,84 @@ Desc - RSA Cryptosystem for text.
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include <string.h>
+#include <math.h>
+long int generate_public_key(long int);
+long int generate_private_key(long int, long int);
 long int gcd(long int, long int);
 long int isprime(long int);
 long int encrypt(char, long int, long int);
 char decrypt(long int, long int, long int);
+long int phi(long int);
 void main()
 {
     long int i, len;
-    long int p, q, n, phi, e, d, cipher[50];
-    char text[50];
+    long int p, q, n, phi_of_n, public_key, private_key, encrypted[50];
+    char text[50], decrypted[50];
 
-    printf("Enter the text to be encrypted: ");
+    printf("Enter message: ");
     fgets(text, 20, stdin);
     
     len = strlen(text);
     
-    do
+    printf("\nEnter p : ");
+    scanf("%ld", &p);
+    printf("\nEnter q : ");
+    scanf("%ld", &q);
+
+    if((isprime(p)) && isprime(q))
     {
-    	p = rand() % 30;
-    }while(!isprime(p));
+    	n = p * q;
+    	phi_of_n = phi(p) * phi(q);
     
-    do
-    {
-        q = rand() % 30;
-    }while(!isprime(q));
+    	public_key = generate_public_key(phi_of_n);
+    	private_key = generate_private_key(public_key, phi_of_n);
     
-    n = p * q;
-    phi = (p - 1) * (q - 1);
+    	printf("\nn : %ld", n);
+    	printf("\nphi(n) : %ld", phi_of_n);
+    	printf("\nPublic key : %ld", public_key);
+    	printf("\nPrivate key : %ld", private_key);
     
-    do
+    	for(i = 0; i < len; i++)
+        	encrypted[i] = encrypt(text[i], n, public_key);
+    	
+    	printf("\nEncrypted message: \n");
+    	for(i = 0; i < len; i++)
+        	printf("%ld", encrypted[i]);
+    
+    	for(i = 0; i < len; i++)
+        	decrypted[i] = decrypt(encrypted[i], n, private_key);
+   
+    	printf("\nDecrypted message: ");
+    	for(i = 0; i < len; i++)
+        	printf("%c", decrypted[i]);
+	}
+	else
+		printf("\nEither of p and q is not a prime number.\n");
+}
+
+long int generate_public_key(long int phi)
+{
+	long int e;
+	
+	do
     {
         e = rand() % phi;
-    }while(gcd(phi, e) != 1);
+    } while(gcd(phi, e) != 1);
     
-    do
+	return e;
+}
+
+long int generate_private_key(long int e, long int phi)
+{
+	long int d;
+	
+	do
     {
         d = rand() % phi;
-    }while(((d * e) % phi) != 1);
+    } while(((d * e) % phi) != 1);
     
-    printf("\nTwo prime numbers (p and q) are: %ld and %ld", p, q);
-    printf("\nn(p * q) = p * p = %ld", (p * q));
-    printf("\n(p - 1) * (q - 1) = %ld", phi);
-    printf("\nPublic key (n,  e): (%ld, %ld)", n , e);
-    printf("\nPrivate key (n, d): (%ld, %ld)", n , d);
-    
-    for (i = 0; i < len; i++)
-        cipher[i] = encrypt(text[i], n, e);
-    printf("\nEncrypted message: \n");
-    
-    for (i = 0; i < len; i++)
-        printf("%ld", cipher[i]);
-    
-    for (i = 0; i < len; i++)
-        text[i] = decrypt(cipher[i], n, d);
-   
-    printf("\nDecrypted message: ");
-    
-    for (i = 0; i < len; i++)
-        printf("%c", text[i]);
+    return d;
 }
 
 long int gcd(long int a, long int b)
@@ -101,6 +119,11 @@ char decrypt(long int ch, long int n, long int d)
     int i;
     long int temp = ch;
     for(i = 1; i < d; i++)
-        ch =(temp * ch) % n;
+        ch = (temp * ch) % n;
     return ch;
+}
+
+long int phi(long int n)
+{
+	return (n - 1);
 }
