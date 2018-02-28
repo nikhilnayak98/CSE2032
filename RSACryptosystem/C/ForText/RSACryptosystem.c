@@ -80,8 +80,8 @@ long int generate_private_key(long int e, long int phi)
 	do
 	{
 		e = rand() % phi;
-	} while(gcd(phi, e) != 1);
-
+	} while(((d * e) % phi) != 1);
+    
     return d;
 }
 
