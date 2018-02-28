@@ -79,7 +79,7 @@ long int generate_private_key(long int e, long int phi)
 	
 	do
 	{
-		e = rand() % phi;
+		d = rand() % phi;
 	} while(((d * e) % phi) != 1);
     
     return d;
