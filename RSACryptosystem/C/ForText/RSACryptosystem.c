@@ -66,10 +66,10 @@ long int generate_public_key(long int phi)
 	long int e;
 	
 	do
-    {
-        e = rand() % phi;
-    } while(gcd(phi, e) != 1);
-    
+	{
+		e = rand() % phi;
+	} while(gcd(phi, e) != 1);
+	
 	return e;
 }
 
@@ -78,10 +78,10 @@ long int generate_private_key(long int e, long int phi)
 	long int d;
 	
 	do
-    {
-        d = rand() % phi;
-    } while(((d * e) % phi) != 1);
-    
+	{
+		e = rand() % phi;
+	} while(gcd(phi, e) != 1);
+
     return d;
 }
 
