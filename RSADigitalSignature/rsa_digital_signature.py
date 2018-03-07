@@ -1,3 +1,7 @@
+# Name - Nikhil Ranjan Nayak
+# Regd no - 1641012040
+# Desc - RSA Digital Signature
+
 from math import sqrt
 from random import shuffle
 
